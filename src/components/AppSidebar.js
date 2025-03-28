@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 
 import {
@@ -17,9 +17,26 @@ import { logo } from 'src/assets/brand/logo'
 import { sygnet } from 'src/assets/brand/sygnet'
 
 // sidebar nav config
-import navigation from '../_nav'
+import {getMenuItems} from '../_nav'
+
+// import generateNavItems from '../_nav';
 
 const AppSidebar = () => {
+  // const sidebarMenu = NavComponent;
+  // console.log(sidebarMenu)
+
+  const [menuItems, setMenuItems] = useState([]); // Store menu data
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getMenuItems(); // Wait for menu data
+      setMenuItems(data);
+    };
+
+    fetchData();
+  }, []); // Run once on component mount
+
+  
   const dispatch = useDispatch()
   const unfoldable = useSelector((state) => state.sidebarUnfoldable)
   const sidebarShow = useSelector((state) => state.sidebarShow)
@@ -27,7 +44,7 @@ const AppSidebar = () => {
   return (
     <CSidebar
       className="border-end"
-      colorScheme="dark"
+      colorScheme="light"
       position="fixed"
       unfoldable={unfoldable}
       visible={sidebarShow}
@@ -36,9 +53,10 @@ const AppSidebar = () => {
       }}
     >
       <CSidebarHeader className="border-bottom">
-        <CSidebarBrand to="/">
-          <CIcon customClassName="sidebar-brand-full" icon={logo} height={32} />
-          <CIcon customClassName="sidebar-brand-narrow" icon={sygnet} height={32} />
+        <CSidebarBrand to="/" className='brandName'>
+          PetPooja
+          {/* <CIcon customClassName="sidebar-brand-full" icon={logo} height={32} />
+          <CIcon customClassName="sidebar-brand-narrow" icon={sygnet} height={32} /> */}
         </CSidebarBrand>
         <CCloseButton
           className="d-lg-none"
@@ -46,7 +64,7 @@ const AppSidebar = () => {
           onClick={() => dispatch({ type: 'set', sidebarShow: false })}
         />
       </CSidebarHeader>
-      <AppSidebarNav items={navigation} />
+      <AppSidebarNav items={menuItems} />
       <CSidebarFooter className="border-top d-none d-lg-flex">
         <CSidebarToggler
           onClick={() => dispatch({ type: 'set', sidebarUnfoldable: !unfoldable })}

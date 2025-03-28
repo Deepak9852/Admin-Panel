@@ -59,7 +59,7 @@ export const AppSidebarNav = ({ items }) => {
       </Component>
     )
   }
-
+console.log(items)
   return (
     <CSidebarNav as={SimpleBar}>
       {items &&

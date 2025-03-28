@@ -1,8 +1,28 @@
-import React from 'react'
-
+import React from 'react';
+// import AddMenu from './views/sidebarPage/setting/addMenu';
 const Dashboard = React.lazy(() => import('./views/dashboard/Dashboard'))
+
+// Setting
+const AddMenu = React.lazy(() => import('./views/sidebarPage/setting/addMenu'))
+const AddSubmenu = React.lazy(() => import('./views/sidebarPage/setting/addSubmenu'))
+const Permission = React.lazy(() => import('./views/sidebarPage/setting/permission/permission'))
+const UserRole = React.lazy(() => import('./views/sidebarPage/setting/userRole'))
+const Role = React.lazy(() => import('./views/sidebarPage/setting/role'))
+const Register = React.lazy(() => import('./views/pages/register/Register'))
+
+
+// product Catalogue
+const Categories = React.lazy(() => import('./views/sidebarPage/Product Catalogue/category'))
+const SubCategories = React.lazy(() => import('./views/sidebarPage/Product Catalogue/subCategory'))
+const menuItem = React.lazy(() => import('./views/sidebarPage/Product Catalogue/menuItems'))
+
+
+
+
 const Colors = React.lazy(() => import('./views/theme/colors/Colors'))
 const Typography = React.lazy(() => import('./views/theme/typography/Typography'))
+
+
 
 // Base
 const Accordion = React.lazy(() => import('./views/base/accordion/Accordion'))
@@ -54,15 +74,27 @@ const Widgets = React.lazy(() => import('./views/widgets/Widgets'))
 const routes = [
   { path: '/', exact: true, name: 'Home' },
   { path: '/dashboard', name: 'Dashboard', element: Dashboard },
-  { path: '/theme', name: 'Theme', element: Colors, exact: true },
-  { path: '/theme/colors', name: 'Colors', element: Colors },
-  { path: '/theme/typography', name: 'Typography', element: Typography },
-  { path: '/base', name: 'Base', element: Cards, exact: true },
-  { path: '/base/accordion', name: 'Accordion', element: Accordion },
-  { path: '/base/breadcrumbs', name: 'Breadcrumbs', element: Breadcrumbs },
-  { path: '/base/cards', name: 'Cards', element: Cards },
-  { path: '/base/carousels', name: 'Carousel', element: Carousels },
-  { path: '/base/collapses', name: 'Collapse', element: Collapses },
+  { path: '/userRole', name: 'User', element: UserRole, exact: true },
+  { path: '/menu', name: 'Menu', element: AddMenu, exact: true },
+  { path: '/submenu', name: 'SubMenu', element: AddSubmenu, exact: true },
+  { path: '/permission', name: 'Permission', element:Permission , exact: true },
+  { path: '/role', name: 'Role', element: Role, exact: true },
+  { path:  '/register', name:'Register Page', element: Register },
+
+
+
+
+
+
+  { path: '/companyDetails', name: 'Colors', element: Colors },
+  { path: '/trails', name: 'Typography', element: Typography },
+  { path: '/active', name: 'Base', element: Cards, exact: true },
+  { path: '/inactive', name: 'Accordion', element: Accordion },
+  { path: '/expired', name: 'Breadcrumbs', element: Breadcrumbs },
+  { path: '/categories', name: 'Categories', element: Categories },
+  { path: '/subCategories', name: 'SubCategories', element: SubCategories },
+  { path: '/menuItems', name: 'menuItem', element: menuItem },
+
   { path: '/base/list-groups', name: 'List Groups', element: ListGroups },
   { path: '/base/navs', name: 'Navs', element: Navs },
   { path: '/base/paginations', name: 'Paginations', element: Paginations },
